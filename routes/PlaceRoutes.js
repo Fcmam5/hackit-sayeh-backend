@@ -6,11 +6,13 @@ var helper = require('./helperFunctions');
  * GET
  */
 router.get('/', PlaceController.list);
+router.get('/hcd', PlaceController.hardcodedlist);
 
 /*
  * GET
  */
 router.get('/:id', PlaceController.show);
+
 
 /*
  * Create a new user

@@ -21,6 +21,36 @@ module.exports = {
             return res.json(Places);
         });
     },
+/*
+PlaceController.hardcodedlist
+*/
+    hardcodedlist : function (req, res) {
+      var answer =  {
+        name : "Riyadh el fath",
+        personnage : "Houari Boumedien",
+        type : "Historic building",
+        city: "Algiers",
+        geopos : {
+          long : "18.9096",
+          latt : "27.3540"
+        },
+        story : "This place was made  in the 1970's",
+        xp : "15",
+        date  : "1970",
+        language : "Arabic"
+      }
+      return res.json(answer);
+      /*
+      to give back the json fine
+return res.json(answer);
+
+git add -A
+git commit -m "moquing value"
+git push herokuemaster
+git push originmaster
+      */
+
+    },
 
     /**
      * PlaceController.show()

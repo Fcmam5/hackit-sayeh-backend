@@ -1,9 +1,14 @@
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
+var jwt = require('jsonwebtoken');
+var passportJWT = require("passport-jwt");
+var ExtractJwt = passportJWT.ExtractJwt;
+var JwtStrategy = passportJWT.Strategy;
 var User = require('../models/UserModel');
 var configAuth = require('./auth');
 var crypto = require('crypto');
+var jwtOptions = {}
 
 module.exports = function(passport) {
   passport.serializeUser(function(user, done){
@@ -196,6 +201,19 @@ module.exports = function(passport) {
         }
       });
   }));
+
+  // Passport JWT authentication
+  // jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
+  // jwtOptions.secretOrKey = 'madewith<3';
+  // passport.use(new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+  //   User.findOne({_id: jwt_payload.id}, function(err, User) {
+  //     if (err || !User) {
+  //       next(null, User);
+  //     } else {
+  //       next(null, false);
+  //     }
+  //   });
+  // }));
 };
 
 

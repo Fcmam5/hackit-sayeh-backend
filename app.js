@@ -17,6 +17,7 @@ var places = require('./routes/PlaceRoutes');
 var payment = require('./routes/PaymentRoutes');
 var userAPI = require('./routes/UserAPI');
 
+
 var app = express();
 
 var passport = require('passport');
@@ -104,6 +105,9 @@ app.use('/users', users);
 app.use('/api/monuments', places);
 app.use('/api/payment', payment);
 app.use('/api/users', userAPI);
+//what oussama added:
+//app.use("api/monuments/hcd",places);
+//app.use('/api/monuments/hcd', hardcoded);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
