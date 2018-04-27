@@ -99,5 +99,47 @@ git push originmaster
         }
         return res.status(201).json(Place);
     });
+  },
+  remove: function(req, res) {
+    var id = req.body.id;
+    PlaceModel.findByIdAndRemove(id, function (err, Place) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Error when deleting the Place.',
+                error: err
+            });
+        }
+        return res.status(204).json();
+    });
+  },
+  update: function(req, res) {
+    var id = req.body.id;
+
+    PlaceModel.findOne({_id: id}, function (err, Place) {
+        if (err) {
+            return res.status(500).json({
+                message: 'Error when getting Place',
+                error: err
+            });
+        }
+        if (!Place) {
+            return res.status(404).json({
+                message: 'No such Place'
+            });
+        }
+
+
+        Place.save(function (err, Place) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when updating Place.',
+                    error: err
+                });
+            }
+
+            return res.json(Place);
+        });
+    });
+
   }
 };
