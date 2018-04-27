@@ -43,11 +43,15 @@ module.exports = {
         });
     },
   create: function(req, res) {
+
+    var geopos = {'long': req.body.long, 'latt': req.body.latt};
+
     var Place = new PlaceModel({
       'name': req.body.name,
       'personnage': req.body.personnage,
       'type': req.body.type,
       'city': req.body.city,
+      'geopos': geopos,
       'story': req.body.story,
       'xp': req.body.xp,
       'date': req.body.date,
