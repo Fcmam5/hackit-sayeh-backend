@@ -101,8 +101,8 @@ app.use(helmet());
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/places', places);
-app.use('/payment', payment);
+app.use('/api/monuments', places);
+app.use('/api/payment', payment);
 app.use('/api/users', userAPI);
 
 // catch 404 and forward to error handler
