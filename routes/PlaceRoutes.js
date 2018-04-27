@@ -15,7 +15,8 @@ router.get('/:id', PlaceController.show);
 /*
  * Create a new user
  */
-router.post('/', helper.isLoggedIn, PlaceController.create)
+// router.post('/', helper.isLoggedIn, PlaceController.create)
+router.post('/', PlaceController.create)
 
 /*
  * Update
