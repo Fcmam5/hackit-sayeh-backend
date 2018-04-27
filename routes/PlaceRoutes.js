@@ -28,7 +28,7 @@ router.post('/remove', PlaceController.remove);
 /*
  * Edit a monument model for a given ID
  */
-router.post('/edit', PlaceController.edit);
+router.post('/edit', PlaceController.update);
 
 /*
  * Update
