@@ -112,6 +112,9 @@ git push originmaster
         return res.status(204).json();
     });
   },
+  /**
+    * TODO Need to update the new new given informations
+    */
   update: function(req, res) {
     var id = req.body.id;
 
