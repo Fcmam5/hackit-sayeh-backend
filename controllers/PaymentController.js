@@ -47,7 +47,6 @@ module.exports = {
       'ip': req.headers['x-forwarded-for'] || req.connection.remoteAddress,
       'value': req.body.value,
       'price': req.body.price,
-      'isValid': false
     });
 
     PaymentCoupon.save(function (err, coupon) {
@@ -63,19 +62,22 @@ module.exports = {
   /**
     * Use coupon
     */
+    //TODO add use =  req.user; used_on = Date.now();
+    //isValid = false
   useCoupon: function(req, res) {
-    var id = req.params.id;
+    var id = req.body.id;
 
-    PaymentSchema.find({_id: id}, function(err, PaymentCopoun) {
+    PaymentModel.findOne({_id: id}, function(err, PaymentCopoun) {
       if(err || !PaymentCopoun){
         return res.status(500).json({
             message: 'Error when creating Payment coupon',
             error: err
         });
       }
-
+//console.log(PaymentCopoun);
       PaymentCopoun.user = req.user;
       PaymentCopoun.used_on = Date.now();
+      PaymentCopoun.isValid = false;
       PaymentCopoun.save(function(error, newCoupon) {
         if (error || !newCoupon) {
           return res.status(500).json({
