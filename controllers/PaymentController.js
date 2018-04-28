@@ -44,7 +44,6 @@ module.exports = {
     },
   create: function(req, res) {
     var PaymentCoupon = new PaymentModel({
-      'ip': req.headers['x-forwarded-for'] || req.connection.remoteAddress,
       'value': req.body.value,
       'price': req.body.price,
     });
@@ -78,6 +77,8 @@ module.exports = {
       PaymentCopoun.user = req.user;
       PaymentCopoun.used_on = Date.now();
       PaymentCopoun.isValid = false;
+      PaymentCopoun.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
       PaymentCopoun.save(function(error, newCoupon) {
         if (error || !newCoupon) {
           return res.status(500).json({
